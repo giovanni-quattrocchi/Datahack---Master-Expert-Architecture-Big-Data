@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  database-mongo:
+    container_name: mongo-container
+    image: mongo
+    volumes:
+      - ./script:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - volume-mongo:/data/db
+    deploy:
+     resources:
+      limits:
+        cpus: '0.10'
+        memory: 500M
+      reservations:
+        cpus: '0.05'
+        memory: 250M
+  web:
+    container_name: web-container
+    build: .
+    image: webapp
+    ports:
+      - 7007:7007
+    environment:
+      - Version=1
+    depends_on:
+      - database-mongo
+    deploy:
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 250M
+        reservations:
+          cpus: '0.05'
+          memory: 125M
+volumes:
+  volume-mongo:
