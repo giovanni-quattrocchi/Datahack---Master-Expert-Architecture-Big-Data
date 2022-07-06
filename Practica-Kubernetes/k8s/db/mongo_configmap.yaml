@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  mongo-init.sh: "mongosh testdb <<EOF\r\ndb.cars.insert({name: \"Audi\", price: 52642});\r\ndb.cars.insert({name:
+    \"Mercedes\", price: 57127});\r\ndb.cars.insert({name: \"Skoda\", price: 9000});\r\ndb.cars.insert({name:
+    \"Volvo\", price: 29000});\r\ndb.cars.insert({name: \"Bentley\", price: 350000});\r\ndb.cars.insert({name:
+    \"Citroen\", price: 21000});\r\ndb.cars.insert({name: \"Hummer\", price: 41400});\r\ndb.cars.insert({name:
+    \"Volkswagen\", price: 21600});\r\nEOF"
+kind: ConfigMap
+metadata:
+  name: mongo-initdb

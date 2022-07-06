@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appdotnet
+  labels:
+    app: appdotnet
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: appdotnet
+  template:
+    metadata:
+      labels:
+        app: appdotnet
+    spec:
+      containers:
+      - name: appdotnet
+        image: giovanniq/appdotnet
+        ports:
+          - containerPort: 7006
+            name: "http"
+          - containerPort: 7007
+            name: "https"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "125m"
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        env:
+        - name: Version
+          value: "2"

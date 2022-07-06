@@ -1,0 +1,11 @@
+kind: Kustomization
+
+resources:
+  - db/mongo_storageclass.yaml
+  - db/mongo_pvc.yaml
+  - db/mongo_pv.yaml
+  - db/mongo_configmap.yaml
+  - db/mongo_deploy.yaml
+  - db/mongo_service.yaml
+  - web/appdotnet_deploy.yaml
+  - web/appdotnet_service.yaml
